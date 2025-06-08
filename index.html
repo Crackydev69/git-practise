@@ -88,6 +88,54 @@ jar {
     }
 }
 
-  
+
+
+Inventory (hosts.ini):
+[web_servers]
+server1.example.com
+server2.example.com
+    
+2. Playbook (install_apache.yml):
+- name: Install and configure Apache
+ hosts: web_servers
+ become: yes
+
+ tasks:
+
+- name: Install Apache
+
+apt:
+
+name: apache2
+
+state: present
+
+update_cache: yes
+
+- name: Start Apache service
+
+ service:
+
+ name: apache2
+
+ state: started
+
+ enabled: yes
+
+- name: Deploy index.html
+
+ copy:
+
+ content: "<html><h1>Welcome</h1></html>"
+
+ dest: /var/www/html/index.html
+
+3. Execution:
+
+ansible-playbook -i hosts.ini install_apache.yml
+
+
+
+    
 </body>
 </html>
