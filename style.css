@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+application {
+    mainClass = 'org.example.Main'  // Replace with your actual main class
+}
+
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    testImplementation 'org.testng:testng:7.11.0'
+}
+
+dependencies {
+    implementation 'org.seleniumhq.selenium:selenium-java:4.33.0'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'org.example.Main'
+        )
+    }
+}
